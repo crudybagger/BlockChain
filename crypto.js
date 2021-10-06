@@ -1,6 +1,6 @@
 const SHA256 = require("sha256");
 module.exports = {
-    pwwDifficulty : 3, 
+    powDifficulty : 3, 
     calculateHash : function ({previousHash, timestamp, data, nonce = 1}) {
         return SHA256(previousHash + timestamp + JSON.stringify(data) +  nonce).toString();
     },
@@ -36,7 +36,7 @@ module.exports = {
         const pblock = chain[chain.length - 1];
         const previousHash = pblock.hash;
         const block                  = { timestamp: + new Date(), data, previousHash, nonce: 0 }
-        const newBlock               = this.mineBlock(this.pwDifficulty, block);
+        const newBlock               = this.mineBlock(this.powDifficulty, block);
         return chain.concat(newBlock);
     },
     validateChain : function (chain) {
@@ -55,6 +55,6 @@ module.exports = {
         return tce(chain, chain.length - 1);
     },
     setDifficulty : function(d) {
-        this.pwDifficulty = d;
+        this.powDifficulty = d;
     }
 }
