@@ -1,6 +1,6 @@
 const SHA256 = require("sha256");
 module.exports = {
-    powDifficulty : 3, 
+    powDifficulty : 4, 
     calculateHash : function ({previousHash, timestamp, data, nonce = 1}) {
         return SHA256(previousHash + timestamp + JSON.stringify(data) +  nonce).toString();
     },
